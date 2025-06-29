@@ -12,7 +12,17 @@ const ToDoApp = () => {
 
     // Adicionar tarefas
     const handleSubmit = (e) => {
-      e.preventDefault
+      e.preventDefault()
+      if  (inputValue.trim() !== "") {
+        const newToDo = {
+          id: Date.now(), // Gera um ID único baseado no timestamp atual
+          text: inputValue, // Texto da tarefa
+          completed: false // Estado de conclusão da tarefa
+        }
+        setToDos(((prevTodos) => [...prevTodos, newToDo]))
+
+        setInputValue("") // Limpa o campo de entrada após adicionar a tarefa
+      }
     }
   return (
     <div className="app_container">
@@ -26,6 +36,21 @@ const ToDoApp = () => {
 
         {/* Lista de Tarefas */}
         {ToDos.length === 0 && <p className="empty">Não há tarefas</p> }
+
+        <ul className="todo_list">
+          {ToDos.map((ToDo) => (
+            <li key={ToDo.id} className="todo_item">
+              {ToDo.text}
+              {/* <input type="checkbox" checked={ToDo.completed} onChange={() => {
+                setToDos(ToDos.map(t => t.id === ToDo.id ? { ...t, completed: !t.completed } : t))
+              }} />
+              <span className={ToDo.completed ? "completed" : ""}>{ToDo.text}</span> */}
+              <button className="delete_button" onClick={() => {
+                setToDos(ToDos.filter(t => t.id !== ToDo.id))
+              }}>Excluir</button>
+            </li>
+          ))}
+        </ul>
     </div>
   )
 }

@@ -41,3 +41,27 @@ body {
     padding: 10px 20px;
     cursor: pointer;
 }
+
+.todo_list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo_item {
+    background-color: #fafafa;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.delete_button {
+    background-color: #cf6679;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    color: #fff;
+    cursor: pointer;
+}
